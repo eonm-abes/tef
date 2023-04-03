@@ -1,12 +1,18 @@
 use serde::Deserialize;
 use crate::{dc::*, dcterms::*};
+use lax_derive::lax;
+use getset::Getters;
 
 /// Auteur
 /// tef:auteur
 /// http://www.abes.fr/abes/documents/tef
 /// Auteur de la thèse
-#[derive(Debug, Clone, Deserialize)]
+
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Auteur {
+    // #[serde(default)]
     nom: Nom,
     prenom: Prenom,
     #[serde(rename = "nomDeNaissance")]
@@ -22,7 +28,9 @@ pub struct Auteur {
 /// tef:autoriteExterne
 /// http://www.abes.fr/abes/documents/tef
 /// Identifiant de notice d'autorité issue d'un système externe 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct AutoriteExterne {
     #[serde(rename = "@autoriteSource")]
     autorite_source: String,
@@ -34,35 +42,41 @@ pub struct AutoriteExterne {
 /// tef:autreFormatFichier
 /// http://www.abes.fr/abes/documents/tef
 /// Format de fichier informatique qui n'est pas prévu dans la liste des valeurs que peut prendre l'élément tef:formatFichier 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct AutoriteFormatFichier(#[serde(rename = "$text")] String);
 
 /// Identifiant d'un bloc de données d'autorité internes
 /// tef:autoriteInterne
 /// http://www.abes.fr/abes/documents/tef
 /// Identifiant d'un bloc de données d'autorité tef:MADSAuthority 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct AutoriteInterne(#[serde(rename = "$text")] String);
 
 /// Avis du jury
 /// tef:avisJury
 /// http://www.abes.fr/abes/documents/tef
 /// Avis du jury autorisant ou non la diffusion de la thèse après la soutenance 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct AvisJury(#[serde(rename = "$text")] String);
 
 /// Date de naissance
 /// tef:dateNaissance
 /// http://www.abes.fr/abes/documents/tef
 /// Date de naissance de l'auteur de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct DateNaissance(#[serde(rename = "$text")] String);
 
 /// Directeur de thèse
 /// tef:directeurThèse
 /// http://www.abes.fr/abes/documents/tef
 /// Personne qui encadre et oriente le travail du doctorant 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct DirecteurThese {
     nom: Nom,
     prenom: Prenom,
@@ -76,7 +90,9 @@ pub struct DirecteurThese {
 /// tef:ecoleDoctorale
 /// http://www.abes.fr/abes/documents/tef
 /// Ecole doctorale au sein de laquelle s’est déroulée la recherche du doctorant
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct EcoleDoctorale {
     nom: Nom,
     #[serde(rename = "autoriteInterne")]
@@ -89,7 +105,9 @@ pub struct EcoleDoctorale {
 /// tef:editeur
 /// http://www.abes.fr/abes/documents/tef
 /// Organisme responsable de l’édition électronique de la thèse 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Editeur {
     nom: Nom,
     place: Place,
@@ -103,7 +121,8 @@ pub struct Editeur {
 /// tef:edition
 /// http://www.abes.fr/abes/documents/tef
 /// Ensemble des métadonnées relatives à une édition électronique de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Edition {
     #[serde(rename = "$value")]
     values: Vec<EditionValues>
@@ -120,38 +139,49 @@ pub enum EditionValues {
     Editeur(Editeur),
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct ElementdEntree;
 
 /// Encodage
 /// tef:encodage
 /// http://www.abes.fr/abes/documents/tef
 /// Type d'encodage du fichier
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Encodage {
     #[serde(rename = "$text")]
     text: EncodageValues
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[derive(Default)]
 pub enum EncodageValues {
     ASCII,
     #[serde(rename = "Latin 1")]
     Latin1,
+    #[default]
     Unicode
 }
+
+
 
 /// Format de fichier
 /// tef:formatFichier
 /// http://www.abes.fr/abes/documents/tef
 /// Format du fichier
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct FormatFichier {
     #[serde(rename = "$text")]
     text: FormatFichierValues
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[derive(Default)]
 pub enum FormatFichierValues {
     OpenDocument,
     PDF,
@@ -169,14 +199,19 @@ pub enum FormatFichierValues {
     MPEG,
     QuickTime,
     #[serde(rename = "autreFormat")]
+    #[default]
     AutreFormat
 }
+
+
 
 /// Autorité
 /// tef:MADSAuthority
 /// http://www.abes.fr/abes/documents/tef
 /// Données d'autorité minimales relatives à une personne (morale ou physique) mentionnée dans la notice 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct MADSAuthority {
     #[serde(rename = "@authorityID")]
     authority_id: String,
@@ -190,7 +225,9 @@ pub struct MADSAuthority {
 /// tef:manque
 /// http://www.abes.fr/abes/documents/tef
 /// Indique une partie manquante en cas de version incomplète. 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Manque {
     #[serde(rename = "ressourceID")]
     ressource_id: Option<RessourceID>,
@@ -202,7 +239,9 @@ pub struct Manque {
 /// tef:membreJury
 /// http://www.abes.fr/abes/documents/tef
 /// Personne chargée d'évaluer une thèse au moment de sa soutenance
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct MembreJury {
     nom: Nom,
     prenom: Prenom,
@@ -216,7 +255,9 @@ pub struct MembreJury {
 /// tef:meta_fichier
 /// http://www.abes.fr/abes/documents/tef
 /// Ensemble des métadonnées techniques caractérisant un fichier informatique 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct MetaFichier {
     // divergeances entre le schéma et la réalité
     encodage: Option<Encodage>,
@@ -234,52 +275,60 @@ pub struct MetaFichier {
 /// tef:nationalite
 /// http://www.abes.fr/abes/documents/tef
 /// Nationalité de l'auteur de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Nationalite(#[serde(rename = "$text")] String);
 
 /// Nom
 /// tef:nom
 /// http://www.abes.fr/abes/documents/tef
 /// Nom de famille d'une personne physique ou nom d'une personne morale
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Nom(#[serde(rename = "$text")] String);
 
 /// Nom de naissance
 /// tef:nomDeNaissance
 /// http://www.abes.fr/abes/documents/tef
 /// Nom de famille de l'auteur de la thèse avant un éventuel changement de son état-civil, par mariage par exemple. 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct NomDeNaissance(#[serde(rename = "$text")] String);
 
 /// Note sur le fichier
 /// tef:noteFichier
 /// http://www.abes.fr/abes/documents/tef
 /// Note portant sur le fichier informatique
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct NoteFichier(#[serde(rename = "$text")] String);
 
 /// Note sur la version
 /// tef:noteVersion
 /// http://www.abes.fr/abes/documents/tef
 /// Note décrivant sous forme de texte libre le contenu manquant en cas de version incomplète de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct NoteVersion(#[serde(rename = "$text")] String);
 
 /// Set OAI
 /// tef:oai_setSpec
 /// http://www.abes.fr/abes/documents/tef
 /// Set(s) OAI auquel(s) est rattachée la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct OaiSetSpec(#[serde(rename = "$text")] String);
 
 /// Partenaire de recherche
 /// tef:partenaireRecherche
 /// http://www.abes.fr/abes/documents/tef
 /// Entreprise ou organisme, public ou privé, ayant participé à la réalisation de la thèse par la mise à disposition de moyens.
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct PartenaireRecherche {
     #[serde(rename = "@type")]
-    r#type: String,
+    r#type: PartenaireRechercheValues,
     #[serde(rename = "@autreType")]
     autre_type: Option<String>,
     nom: String,
@@ -289,13 +338,31 @@ pub struct PartenaireRecherche {
     autorite_externe: Option<Vec<AutoriteExterne>>
 }
 
+#[derive(Debug, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum PartenaireRechercheValues {
+    Laboratoire,
+    Entreprise,
+    Fondation,
+    EquipeRecherche,
+    AutreType
+}
+
+impl Default for PartenaireRechercheValues {
+    fn default() -> Self {
+        Self::AutreType
+    }
+}
+
 use super::mads::*;
 
 /// Personne
 /// tef:personMADS
 /// http://www.abes.fr/abes/documents/tef
 /// Données d'autorité minimales relatives à une personne (morale ou physique) mentionnée dans la notice 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct PersonMADS {
     name_part: Vec<NamePart>,
     description: Description
@@ -305,21 +372,25 @@ pub struct PersonMADS {
 /// tef:place
 /// http://www.abes.fr/abes/documents/tef
 /// Adresse de l'organisme responsable d'une édition électronique de la thèse (ville) 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Place(#[serde(rename = "$text")] String);
 
 /// Prénom
 /// tef:prenom
 /// http://www.abes.fr/abes/documents/tef
 /// Prénom d'une personne physique
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Prenom(#[serde(rename = "$text")] String);
 
 /// Président du jury
 /// tef:presidentJury
 /// http://www.abes.fr/abes/documents/tef
 /// Personne présidant le jury lors de la soutenance de la thèse et chargée de donner l'avis du jury 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct PresidentJury {
     nom: Nom,
     prenom: Prenom,
@@ -333,7 +404,9 @@ pub struct PresidentJury {
 /// tef:rapporteur
 /// http://www.abes.fr/abes/documents/tef
 /// Personne qui rend compte du contenu de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Rapporteur {
     nom: Nom,
     prenom: Prenom,
@@ -347,7 +420,8 @@ pub struct Rapporteur {
 /// tef:ressourceExterneDescription
 /// http://www.abes.fr/abes/documents/tef
 /// Description de ressource externe
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 // A pour enfant n'importe quel(s) élément(s) Dublin Core (simple et qualifié). 
 pub struct RessourceExterneDescription(std::collections::HashMap<String, String>);
 
@@ -355,41 +429,50 @@ pub struct RessourceExterneDescription(std::collections::HashMap<String, String>
 /// tef:ressourceID
 /// http://www.abes.fr/abes/documents/tef
 /// Identifiant de ressource externe décrite en cas de version expurgée de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct RessourceID(#[serde(rename = "$text")] String);
 
 /// Structure du fichier
 /// tef:structureFichier
 /// http://www.abes.fr/abes/documents/tef
 /// Structure du fichier informatique
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct StructureFichier(#[serde(rename = "$text")] String);
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Subdivision;
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct SujetRameau;
 
 /// Taille du fichier en octets
 /// tef:tailleFichier
 /// http://www.abes.fr/abes/documents/tef
 /// Taille du fichier informatique en octets
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Taille(#[serde(rename = "$text")] String);
 
 /// Thèse sur travaux
 /// tef:theseSurTravaux
 /// http://www.abes.fr/abes/documents/tef
 /// Thèse constituée en partie d'articles publiés par le doctorant avant la soutenance de sa thèse.
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct TheseSurTravaux(#[serde(rename = "$text")] String);
 
 /// Diplôme de doctorat
 /// tef:thesis.degree
 /// http://www.abes.fr/abes/documents/tef
 /// Ensemble des métadonnées spécifiques au diplôme obtenu à l’issue d’une soutenance de thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct ThesisDegree {
     #[serde(rename = "thesis.degree.discipline")]
     discipline: ThesisDegreeDiscipline,
@@ -405,9 +488,10 @@ pub struct ThesisDegree {
 /// tef:thesis.degree.discipline
 /// http://www.abes.fr/abes/documents/tef
 /// Discipline de la thèse
-
-#[derive(Debug, Clone, Deserialize)]
-pub struct ThesisDegreeDiscipline{
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
+pub struct ThesisDegreeDiscipline {
     #[serde(rename = "@lang")]
     lang: String,
     #[serde(rename = "$text")]
@@ -418,7 +502,9 @@ pub struct ThesisDegreeDiscipline{
 /// tef:thesis.degree.grantor
 /// http://www.abes.fr/abes/documents/tef
 /// Etablissement de soutenance
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct ThesisDegreeGrantor {
     nom: Nom,
     #[serde(rename = "autoriteInterne")]
@@ -431,7 +517,9 @@ pub struct ThesisDegreeGrantor {
 /// tef:thesis.degree.level
 /// http://www.abes.fr/abes/documents/tef
 /// Type de doctorat obtenu
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct ThesisDegreeLevel {
     #[serde(rename = "$text")]
     text: ThesisDegreeLevelValues
@@ -447,18 +535,29 @@ pub enum ThesisDegreeLevelValues {
     Doctorat3eCycle
 }
 
+impl Default for ThesisDegreeLevelValues {
+    fn default() -> Self {
+        Self::Doctorat
+    }
+}
+
+
+
 /// Titre obtenu
 /// tef:thesis.degree.name
 /// http://www.abes.fr/abes/documents/tef
 /// Titre obtenu
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct ThesisDegreeName(#[serde(rename = "$text")] String);
 
 /// Métadonnées administratives
 /// tef:thesisAdmin
 /// http://www.abes.fr/abes/documents/tef
 /// Ensemble des métadonnées administratives de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct ThesisAdmin {
     auteur: Auteur,
     identifier: Vec<Identifier>,
@@ -491,7 +590,9 @@ pub struct ThesisAdmin {
 /// tef:thesisRecord
 /// http://www.abes.fr/abes/documents/tef
 /// Ensemble des métadonnées descriptives relatives à la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct ThesisRecord {
     coverage: Option<Vec<Coverage>>,
     title: Title,
@@ -506,14 +607,17 @@ pub struct ThesisRecord {
     language: Vec<Language>
 }
 
-#[derive(Debug, Clone, Deserialize)]    
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct VedetteRameauNomCommun;
 
 /// Version
 /// tef:version
 /// http://www.abes.fr/abes/documents/tef
 /// Ensemble des métadonnées descriptives relatives à une version incomplète de la thèse 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Version {
     manque: Vec<Manque>,
     replaces: Vec<Replaces>

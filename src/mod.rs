@@ -1,17 +1,23 @@
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct vedetteRameauAuteurTitre;
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct vedetteRameauCollectivite;
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct vedetteRameauFamille;
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct vedetteRameauNomGeographique;
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct vedetteRameauPersonne;
 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct vedetteRameauTitre;

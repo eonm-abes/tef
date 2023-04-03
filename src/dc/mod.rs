@@ -1,17 +1,22 @@
 use serde::Deserialize;
+use lax_derive::lax;
+use getset::Getters;
 
 /// Couverture spatiale ou temporelle
 /// dc:coverage
 /// http://purl.org/dc/elements/1.1/
 /// Ensemble des métadonnées relatives au périmètre ou au domaine d'application du contenu de la ressource 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Coverage(#[serde(rename = "$text")] String);
 
 /// Identifiant
 /// dc:identifier
 /// http://purl.org/dc/elements/1.1/
 /// Identifiant unique
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Identifier {
     #[serde(rename = "@type")]
     r#type: String,
@@ -23,7 +28,9 @@ pub struct Identifier {
 /// dc:language
 /// http://purl.org/dc/elements/1.1/
 /// Langue de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Language {
     #[serde(rename = "@type")]
     r#type: String,
@@ -35,7 +42,9 @@ pub struct Language {
 /// dc:subject
 /// http://purl.org/dc/elements/1.1/
 /// Sujet, discipline et/ou mots-clés attribués à la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Subject {
     #[serde(rename = "@lang")]
     lang: Option<String>,
@@ -49,7 +58,9 @@ pub struct Subject {
 /// dc:title
 /// http://purl.org/dc/elements/1.1/
 /// Titre propre de la thèse et son sous-titre
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Title {
     #[serde(rename = "@lang")]
     lang: String,
@@ -63,7 +74,9 @@ pub struct Title {
 /// dc:type
 /// http://purl.org/dc/elements/1.1/
 /// Type
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Type {
     #[serde(rename = "@type")]
     r#type: Option<String>,

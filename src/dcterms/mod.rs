@@ -1,10 +1,14 @@
 use serde::Deserialize;
+use lax_derive::lax;
+use getset::Getters;
 
 /// Résumé
 /// dcterms:abstract
 /// http://purl.org/dc/terms/
 /// Résumé de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Abstract {
     #[serde(rename = "@lang")]
     lang: String,
@@ -16,7 +20,9 @@ pub struct Abstract {
 /// dcterms:alternative
 /// http://purl.org/dc/terms/
 /// Traduction du titre et du sous-titre de la thèse 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Alternative {
     #[serde(rename = "@lang")]
     lang: String,
@@ -28,7 +34,9 @@ pub struct Alternative {
 /// dcterms:dateAccepted
 /// http://purl.org/dc/terms/
 /// Date de soutenance de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct DateAccepted {
     #[serde(rename = "@type")]
     r#type: String,
@@ -40,14 +48,17 @@ pub struct DateAccepted {
 /// dcterms:extent
 /// http://purl.org/dc/terms/
 /// Taille de fichier informatique en octets
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct Extent(#[serde(rename = "$text")] String);
 
 /// Date de publication
 /// dcterms:issued
 /// http://purl.org/dc/terms/
 /// Date de publication d'une édition de la thèse 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Issued {
     #[serde(rename = "@type")]
     r#type: String,
@@ -59,7 +70,9 @@ pub struct Issued {
 /// dcterms:medium
 /// http://purl.org/dc/terms/
 /// Type de fichier informatique
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Medium {
     #[serde(rename = "@type")]
     r#type: String,
@@ -71,7 +84,9 @@ pub struct Medium {
 /// dcterms:replaces
 /// http://purl.org/dc/terms/
 /// Renvoie à une autre ressource que la ressource décrite remplace ou à laquelle elle succède
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Replaces {
     #[serde(rename = "@type")]
     r#type: String,
@@ -83,7 +98,9 @@ pub struct Replaces {
 /// dcterms:spatial
 /// http://purl.org/dc/terms/
 /// Couverture spatiale du sujet traité dans la thèse 
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Spatial {
     #[serde(rename = "@type")]
     r#type: Option<String>,
@@ -97,7 +114,9 @@ pub struct Spatial {
 /// dcterms:tableOfContents
 /// http://purl.org/dc/terms/
 /// Table des matières de la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct TableOfContents {
     #[serde(rename = "@lang")]
     lang: String,
@@ -109,7 +128,9 @@ pub struct TableOfContents {
 /// dcterms:temporal
 /// http://purl.org/dc/terms/
 /// Couverture temporelle du sujet traité dans la thèse
-#[derive(Debug, Clone, Deserialize)]
+#[lax]
+#[derive(Debug, Clone, Deserialize, Default, Getters)]
+#[getset(get="pub")]
 pub struct Temporal {
     #[serde(rename = "@type")]
     r#type: Option<String>,
