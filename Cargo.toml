@@ -1,0 +1,22 @@
+[package]
+name = "tef"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "tef"
+path = "src/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = {version="1.0.156", features=["derive"]}
+quick-xml = {version="*", features=["serialize", "overlapped-lists"]}
+lax-derive = { version = "*", path="./lax-derive", optional = true}
+getset = "0.1.2"
+thiserror = "1.0.39"
+
+[features]
+extractors = []
+gestion = []
+lax = ["lax-derive"]

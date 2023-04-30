@@ -4,6 +4,7 @@ use quote::quote;
 use syn::Attribute;
 use syn::{parse, parse_macro_input, ItemStruct};
 
+/// Add attribute #[serde(default)] for each fields of a struct.
 #[proc_macro_attribute]
 pub fn lax(args: TokenStream, input: TokenStream) -> TokenStream {
     let mut item_struct = parse_macro_input!(input as ItemStruct);
