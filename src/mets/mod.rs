@@ -10,7 +10,7 @@ use crate::gestion::{star::StarGestion, step::StepGestion};
 
 /// Agent
 /// mets:agent
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// L'élément mets:agent permet de mentionner la (ou les) personne(s) ayant contribué au document METS et de préciser son (leur) rôle.
 
 #[cfg_attr(feature = "lax", lax)]
@@ -37,7 +37,7 @@ pub enum AgentValues {
 
 /// Autre identifiant de notice
 /// mets:altRecordID
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Identifiant de notice alternatif. Cet élément permet d'assigner des identifiants alternatifs au document METS. Ces identifiants s'ajoutent à l'identifiant primaire stocké dans l'attribut OBJID de la racine mets:mets .
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -51,7 +51,7 @@ pub struct AltRecordID {
 
 /// Section des métadonnées de gestion
 /// mets:amdSec
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Section qui contient tous les blocs de métadonnées de gestion des entités TEF.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -73,7 +73,7 @@ pub enum AmdSecValues {
 
 /// Division
 /// mets:div
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Dans TEF, chaque mets:div de la carte de structure ( mets:structMap ) représente une entité du modèle TEF (la thèse, une version, une édition ou une ressource externe).
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -102,7 +102,7 @@ pub enum DivValues {
 
 /// Bloc de métadonnées descriptives
 /// mets:dmdSec
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Bloc contenant les métadonnées descriptives d'une entité TEF
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -118,7 +118,7 @@ pub struct DmdSec {
 
 /// Fichier
 /// mets:file
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Fichier informatique composant une édition électronique
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -138,7 +138,7 @@ pub struct File {
 
 /// Groupe de fichiers
 /// mets:fileGrp
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Cet élément permet de regrouper des fichiers ( mets:file )
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -162,7 +162,7 @@ pub enum FileGrpValues {
 
 /// Section des fichiers
 /// mets:fileSec
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Inventaire de tous les fichiers de toutes les éditions de la thèse
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -176,7 +176,7 @@ pub struct FileSec {
 
 /// Emplacement du fichier
 /// mets:FLocat
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Cet élément pointe vers l'emplacement d'un fichier.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -192,7 +192,7 @@ pub struct FLocat {
 
 /// Pointeur de fichier
 /// mets:fptr
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// L'élément mets:fptr associe un élément mets:div avec le(s) fichier(s) qui y correspond(ent).
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -204,7 +204,7 @@ pub struct Fptr {
 
 /// Enveloppe de métadonnées
 /// mets:mdWrap
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// mets:mdWrap est un élément générique utilisé tout au long du schéma METS. Il permet de placer des métadonnées provenant de n'importe quel schéma dans un document METS. Dans TEF, ces métadonnées sont encodées en XML, via l'élément mets:xmlData .
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -216,7 +216,7 @@ pub struct MdWrap {
 
 /// Document TEF
 /// mets:mets
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Cet élément est la racine d'une notice TEF.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -242,7 +242,7 @@ pub enum MetsValues {
 
 /// en-tête METS
 /// mets:metsHdr
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Cet élément contient les métadonnées sur le document METS lui même.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -268,7 +268,7 @@ pub enum MetsHdrValues {
 
 /// Nom de l'agent METS
 /// mets:name
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Nom complet de l'agent (auteur, éditeur, ...) intervenant sur le document METS.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq)]
@@ -276,7 +276,7 @@ pub struct Name(#[serde(rename = "$value")] String);
 
 /// Note sur l'agent METS
 /// mets:note
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Toutes informations complémentaires sur les activités de l'agent (auteur, éditeur, ... ) intervenant sur la notice METS.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq)]
@@ -284,7 +284,7 @@ pub struct Note(#[serde(rename = "$value")] String);
 
 /// Bloc de métadonnées de droits
 /// mets:rightsMD
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Bloc contenant les métadonnées de droits qui s'appliquent à une entité TEF
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -298,7 +298,7 @@ pub struct RightsMD {
 
 /// Carte de structure
 /// mets:structMap
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// La carte de structure établit l'inventaire de toutes les entités TEF (la thèse, une version, une édition ou une ressource externe).
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -312,7 +312,7 @@ pub struct StructMap {
 
 /// Bloc de métadonnées techniques ou administratives
 /// mets:techMD
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Un bloc mets:techMD contient soit les métadonnées administratives qui se rapportent à la thèse, soit les métadonnées de conservation qui se rapportent à chaque fichier de l'édition d'archivage.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -326,7 +326,7 @@ pub struct TechMD {
 
 /// Enveloppe des métadonnées XML
 /// mets:xmlData
-/// http://www.loc.gov/METS/
+/// <http://www.loc.gov/METS/>
 /// Élément contenant les métadonnées encodées en XML.
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]

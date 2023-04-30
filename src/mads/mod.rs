@@ -6,7 +6,7 @@ use lax_derive::lax;
 
 /// Description de personne
 /// mads:description
-/// http://www.loc.gov/mads/
+/// <http://www.loc.gov/mads/>
 /// Description d'une personne en texte libre
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
@@ -18,7 +18,7 @@ pub struct Description {
 
 /// Partie de nom
 /// mads:namePart
-/// http://www.loc.gov/mads/
+/// <http://www.loc.gov/mads/>
 /// Partie du nom complet d'une personne
 #[cfg_attr(feature = "lax", lax)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq, Getters)]
