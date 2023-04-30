@@ -230,6 +230,7 @@ pub struct Mets {
     values: Vec<MetsValues>,
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub enum MetsValues {
@@ -338,6 +339,7 @@ pub struct XmlData {
 
 use super::tef::*;
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq)]
 pub enum XmlDataValues {
     #[serde(rename = "thesisRecord")]
